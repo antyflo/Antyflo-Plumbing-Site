@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employees — AntyFlo Plumbing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="container hero">
+    <img class="logo" src="logo.png" alt="AntyFlo Plumbing logo" />
+    <div class="hero-text">
+      <h1>Employee Portal</h1>
+      <p class="tagline">Private files and links for AntyFlo staff.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card" id="login-card">
+      <h2>Login</h2>
+      <p>Enter the employee password to access documents.</p>
+      <label>Password
+        <input type="password" id="pw" placeholder="Enter password">
+      </label>
+      <div class="cta-row">
+        <button class="btn primary" onclick="login()">Unlock</button>
+      </div>
+      <p class="tiny">Tip: change the password in <code>employees.html</code> before publishing.</p>
+    </div>
+
+    <div class="card" id="portal" style="display:none">
+      <h2>Files & Links</h2>
+      <ul class="bullets">
+        <li><a id="driveLink" href="#" target="_blank" rel="noopener">Open company Drive folder</a></li>
+        <li><a id="sopLink" href="#" target="_blank" rel="noopener">Standard Operating Procedures (SOP)</a></li>
+        <li><a id="scheduleLink" href="#" target="_blank" rel="noopener">Weekly schedule</a></li>
+      </ul>
+      <p class="tiny">These links can point to Google Drive, Dropbox, or any resource you use.</p>
+    </div>
+  </main>
+
+  <script>
+    // CHANGE THIS to your own strong password before publishing
+    const PASSWORD = "antyflo2022";
+
+    // Put your real links here (Google Drive folders, etc.)
+    const LINKS = {
+      drive: "https://drive.google.com/drive/folders/REPLACE_ME",
+      sop: "https://docs.google.com/document/d/REPLACE_ME",
+      schedule: "https://docs.google.com/spreadsheets/d/REPLACE_ME"
+    };
+
+    function login(){
+      const input = document.getElementById('pw').value;
+      if(input === PASSWORD){
+        document.getElementById('login-card').style.display = 'none';
+        document.getElementById('portal').style.display = 'block';
+        document.getElementById('driveLink').href = LINKS.drive;
+        document.getElementById('sopLink').href = LINKS.sop;
+        document.getElementById('scheduleLink').href = LINKS.schedule;
+      }else{
+        alert('Incorrect password');
+      }
+    }
+  </script>
+</body>
+</html>
